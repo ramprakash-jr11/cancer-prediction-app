@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cancer Prediction</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Cancer Prediction Tool</h1>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <form action="{{ url_for('predict') }}" method="POST">
+              <div class="mb-3">
+                <label for="age" class="form-label">Age</label>
+                <input type="number" class="form-control" id="age" name="age" step="1" min="18" max="100" required>
+              </div>
+              <div class="mb-3">
+                <label for="gender" class="form-label">Gender</label>
+                <select class="form-select" id="gender" name="gender" required>
+                  <option value="0">Female</option>
+                  <option value="1">Male</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="bmi" class="form-label">BMI</label>
+                <input type="number" class="form-control" id="bmi" name="bmi" step="0.1" min="10" max="50" required>
+              </div>
+              <div class="mb-3">
+                <label for="smoking" class="form-label">Smoking</label>
+                <select class="form-select" id="smoking" name="smoking" required>
+                  <option value="0">No</option>
+                  <option value="1">Yes</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="genetic_risk" class="form-label">Genetic Risk</label>
+                <select class="form-select" id="genetic_risk" name="genetic_risk" required>
+                  <option value="0">Low</option>
+                  <option value="1">Medium</option>
+                  <option value="2">High</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="physical_activity" class="form-label">Physical Activity (hours/week)</label>
+                <input type="number" class="form-control" id="physical_activity" name="physical_activity" step="0.1" min="0" max="20" required>
+              </div>
+              <div class="mb-3">
+                <label for="alcohol_intake" class="form-label">Alcohol Intake (units/week)</label>
+                <input type="number" class="form-control" id="alcohol_intake" name="alcohol_intake" step="0.1" min="0" max="20" required>
+              </div>
+              <div class="mb-3">
+                <label for="cancer_history" class="form-label">Cancer History</label>
+                <select class="form-select" id="cancer_history" name="cancer_history" required>
+                  <option value="0">No</option>
+                  <option value="1">Yes</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Predict</button>
+            </form>
+
+            <!-- Back and Logout buttons -->
+            <div class="d-flex justify-content-between mt-3">
+              <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+              <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
